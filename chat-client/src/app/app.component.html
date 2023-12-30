@@ -37,8 +37,8 @@
     --pill-accent: var(--bright-blue);
 
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -52,8 +52,8 @@
     letter-spacing: -0.125rem;
     margin: 0;
     font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
   }
 
   p {
@@ -133,11 +133,9 @@
   .pill-group .pill:nth-child(6n + 1) {
     --pill-accent: var(--bright-blue);
   }
-
   .pill-group .pill:nth-child(6n + 2) {
     --pill-accent: var(--french-violet);
   }
-
   .pill-group .pill:nth-child(6n + 3),
   .pill-group .pill:nth-child(6n + 4),
   .pill-group .pill:nth-child(6n + 5) {
@@ -207,9 +205,9 @@
             gradientTransform="rotate(118.122 171.182 60.81) scale(205.794)"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#FF41F8"/>
-            <stop offset=".707" stop-color="#FF41F8" stop-opacity=".5"/>
-            <stop offset="1" stop-color="#FF41F8" stop-opacity="0"/>
+            <stop stop-color="#FF41F8" />
+            <stop offset=".707" stop-color="#FF41F8" stop-opacity=".5" />
+            <stop offset="1" stop-color="#FF41F8" stop-opacity="0" />
           </radialGradient>
           <linearGradient
             id="b"
@@ -219,53 +217,16 @@
             y2="192"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#F0060B"/>
-            <stop offset="0" stop-color="#F0070C"/>
-            <stop offset=".526" stop-color="#CC26D5"/>
-            <stop offset="1" stop-color="#7702FF"/>
+            <stop stop-color="#F0060B" />
+            <stop offset="0" stop-color="#F0070C" />
+            <stop offset=".526" stop-color="#CC26D5" />
+            <stop offset="1" stop-color="#7702FF" />
           </linearGradient>
-          <clipPath id="a">
-            <path fill="#fff" d="M0 0h982v239H0z"/>
-          </clipPath>
+          <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
       <h1>Hello, {{ title }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
-
-      @if (messages.length > 0) {
-        <div>
-          @for (message of messages; track $index) {
-            @if (message.user === user) {
-              <p style="font-weight: bold; text-align: end">{{ message.user }}</p>
-              <p style="margin-top: 0; text-align: end">{{ message.text }}</p>
-            } @else {
-              <p style="font-weight: bold;">{{ message.user }}</p>
-              <p style="margin-top: 0;">{{ message.text }}</p>
-            }
-          }
-        </div>
-      } @else {
-        <p>No messages yet</p>
-      }
-
-      @if (user.length === 0) {
-        <p>Send a message!</p>
-        <form [formGroup]="inputNameForm" (ngSubmit)="saveUser()">
-          <label for="user" style="font-weight: bold">
-            Input Your Name: <input id="user" type="text" formControlName="user">
-          </label>
-          <input type="submit" [disabled]="!inputNameForm.valid">
-        </form>
-      } @else {
-        <p>Send a message, {{ user }}!</p>
-        <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()">
-          <label for="text">
-            Message: <input id="text" type="text" formControlName="text">
-          </label>
-          <input type="submit" content="Save Name" [disabled]="!sendMessageForm.valid">
-        </form>
-      }
-
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
