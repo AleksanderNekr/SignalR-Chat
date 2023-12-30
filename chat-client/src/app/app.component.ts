@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit {
   })
 
   constructor(private readonly chatService: SignalrService,
-              private readonly changeDetector: ChangeDetectorRef) {
+              private readonly changeDetector: ChangeDetectorRef,
+              private readonly sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -39,6 +41,7 @@ export class AppComponent implements OnInit {
 
   public sendMessage() {
     let text = this.sendMessageForm.get('text')?.value ?? '<empty>';
+    text = this.sanitizer.sanitize(SecurityContext.HTML, text) || '';
     this.chatService.sendMessage(this.user, text, () => {
       alert('Error while trying sending message! Try again later');
       this.ngOnInit();
