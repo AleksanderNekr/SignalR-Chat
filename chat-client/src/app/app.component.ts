@@ -14,17 +14,17 @@ import { SignalrService } from "./services/signalr.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  title = 'chat-client'
+  title = 'chat-client';
 
   messages: Message[] = [];
   private _user = '';
 
   inputNameForm = new FormGroup({
     'user': new FormControl('', Validators.required)
-  })
+  });
   sendMessageForm = new FormGroup({
     'text': new FormControl('', Validators.required)
-  })
+  });
 
   constructor(private readonly chatService: SignalrService,
               private readonly changeDetector: ChangeDetectorRef,
@@ -32,11 +32,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.chatService.startConnection()
+    this.chatService.startConnection();
     this.chatService.addChatMsgListener((user, text) => {
-      this.messages.push({ user, text })
-      this.changeDetector.markForCheck()
-    })
+      this.messages.push({ user, text });
+      this.changeDetector.detectChanges();
+    });
   }
 
   public sendMessage() {
@@ -61,8 +61,7 @@ export class AppComponent implements OnInit {
   }
 
   saveUser() {
-    this.user = this.inputNameForm.get('user')?.value ?? '<empty>'
-    this.changeDetector.markForCheck()
+    this.user = this.inputNameForm.get('user')?.value;
   }
 }
 
