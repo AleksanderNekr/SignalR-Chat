@@ -29,4 +29,11 @@ export class SignalrService {
         restartCall()
       })
   }
+
+  stopConnection() {
+    this.hubConnection?.stop()
+      .catch(err => {
+        console.log(`Error while stopping hub: ${ err }`)
+      })
+  }
 }

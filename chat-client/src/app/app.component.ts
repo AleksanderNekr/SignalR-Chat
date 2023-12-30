@@ -1,5 +1,12 @@
 import { DomSanitizer } from '@angular/platform-browser';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, SecurityContext } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  SecurityContext
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -13,7 +20,7 @@ import { SignalrService } from "./services/signalr.service";
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'chat-client';
 
   messages: Message[] = [];
@@ -37,6 +44,10 @@ export class AppComponent implements OnInit {
       this.messages.push({ user, text });
       this.changeDetector.detectChanges();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.chatService.stopConnection()
   }
 
   public sendMessage() {
