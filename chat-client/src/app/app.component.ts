@@ -38,9 +38,13 @@ export class AppComponent implements OnInit {
   }
 
   public sendMessage() {
-    let text = this.sendMessageForm.get('text')?.value ?? '<empty>'
-    this.chatService.sendMessage(this.user, text)
-    this.sendMessageForm.reset()
+    let text = this.sendMessageForm.get('text')?.value ?? '<empty>';
+    this.chatService.sendMessage(this.user, text, () => {
+      alert('Error while trying sending message! Try again later');
+      this.ngOnInit();
+    });
+    this.sendMessageForm.reset();
+  }
   }
 
   saveUser() {

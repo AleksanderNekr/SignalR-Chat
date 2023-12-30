@@ -22,12 +22,11 @@ export class SignalrService {
     this.hubConnection?.on('Receive', callback)
   }
 
-  public sendMessage(user: string, text: string) {
+  public sendMessage(user: string, text: string, restartCall: () => void) {
     this.hubConnection?.invoke('SendMessageAsync', user, text)
       .catch(err => {
         console.log(`Error while sending message: ${ err }`)
-        alert('Error while trying sending message! Try again later')
-        this.startConnection()
+        restartCall()
       })
   }
 }
