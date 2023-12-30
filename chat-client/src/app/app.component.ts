@@ -2,13 +2,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, SecurityContext } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { SignalrService } from "./services/signalr.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ CommonModule, RouterOutlet ],
+  imports: [ CommonModule, RouterOutlet, ReactiveFormsModule ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
