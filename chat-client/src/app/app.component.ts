@@ -16,8 +16,8 @@ import { SignalrService } from "./services/signalr.service";
 export class AppComponent implements OnInit {
   title = 'chat-client'
 
-  messages: Message[] = []
-  user = ''
+  messages: Message[] = [];
+  private _user = '';
 
   inputNameForm = new FormGroup({
     'user': new FormControl('', Validators.required)
@@ -48,6 +48,16 @@ export class AppComponent implements OnInit {
     });
     this.sendMessageForm.reset();
   }
+
+  set user(value: string | null | undefined) {
+    if (this._user !== value) {
+      this._user = value ?? '<empty>';
+      this.changeDetector.detectChanges();
+    }
+  }
+
+  get user(): string {
+    return this._user;
   }
 
   saveUser() {
