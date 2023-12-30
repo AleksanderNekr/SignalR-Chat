@@ -1,4 +1,9 @@
 # SignalR Chat
+Tech stack:
+- ASP.NET 8 Minimal APIs
+- Angular 17
+- Microsoft SignalR
+
 Example screenshot made using Edge's split tabs view.
 
 
